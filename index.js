@@ -14,7 +14,14 @@ function sum(n){
 }
 app.get("/",function(req,res){
     const n=req.query.n;
+    const name=req.query.name;
+     const age=req.query.age;
     const ans=sum(n);
+    if(age>=18){
+        res.send(name+" adult");
+    }else{
+        res.send(name+" minor")
+    }
     res.send("hi your ans is"+ans);
 })
 
