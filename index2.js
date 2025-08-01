@@ -41,7 +41,8 @@ app.post("/",function(req,res){
 })
 
 app.put("/",function (req,res) {
-    for(let i=0;i<users[0].kidneys.length)
+    for(let i=0;i<users[0].kidneys.length;i++);
+    users[0].kidneys[i].healthy= true;
 })
 
 
