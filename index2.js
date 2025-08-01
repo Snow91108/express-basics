@@ -8,13 +8,15 @@ const users=[{
     }]
 }];
 
+app.use(express.json());
+
 //query parameters
 app.get("/",function(req,res){
  const johnKidneys=users[0].kidneys;
  const numOfKidneys=johnKidneys.length;
  let numOfHealthyKidneys=0;
 
- for(let i=0;i<johnKidneys.length;i++){
+ for(let i=0;i<johnKidneys.length;i++){ 
     if(johnKidneys[i].healthy){
         numOfHealthyKidneys=numOfHealthyKidneys+1;
     }
@@ -28,7 +30,18 @@ unHealthyKidneys
 })
 
 app.post("/",function(req,res){
+    const isHealthy= req.body.isHealthy;
+    users[0].kidneys.push({
+        healthy:isHealthy
+    })
+    res.json({
+        msg:"Done!"
+    })
 
+})
+
+app.put("/",function (req,res) {
+    for(let i=0;i<users[0].kidneys.length)
 })
 
 
