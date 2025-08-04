@@ -19,6 +19,17 @@ app.get("/books/:id",(req,res)=>{
         res.json(book);
 });
 
+app.post("/books",(req,res)=>{
+const newBook={
+    id:books.length+1,
+    title:req.body.title,
+    author:req.body.author
+}
+books.push(newBook);
+res.status(201).json(newBook);
+})
+
+
 
 
 

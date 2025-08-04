@@ -23,7 +23,7 @@ app.get("/",function(req,res){
  }
  const unHealthyKidneys=numOfKidneys-numOfHealthyKidneys;
  res.json({
-johnKidneys,
+numOfKidneys,
 numOfHealthyKidneys,
 unHealthyKidneys
  })
@@ -53,7 +53,8 @@ app.put("/",function (req,res) {
 //removing all the unhealthy kidneys
 
 app.delete("/",function(req,res){
-    const newKidneys=[];
+    if(isThereAtleastOneUnhealthyKidneys()){
+         const newKidneys=[];
     for(let i=0;i<users[0];i++){
         if(users[0],kidneys[i].healthy){
             newKidneys.push({
@@ -61,9 +62,24 @@ app.delete("/",function(req,res){
             })
         }
     }
-    users[0].kidneys=newKidneys;
+      users[0].kidneys=newKidneys;
     res.json({msg:"done"})
-})
+    }else{
+        res.status(411).json({
+            msg: "you have no bad kidneys"
+        });
+    }
+});
+
+function isThereAtleastOneUnhealthyKidneys(){
+    let atleastOneUnHealthykidney=false;
+    for(let i=0;i<users[0].kidneys.length; i++){
+        if(!users[0].kidneys[i].healthy){
+            atleastOneUnHealthykidney=true;
+        }
+    }
+    return atleastOneUnHealthykidney;
+}
 
 
 app.listen(3000);
